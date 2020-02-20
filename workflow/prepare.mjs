@@ -1,7 +1,7 @@
 import { resolve } from 'path';
-import { ensureRepositoryIsReady } from './store/repo.js';
-import { loadIssueIntoMarkDown } from './store/issue.js';
-import { populateConfig } from './store/vuepress.js';
+import { ensureRepositoryIsReady } from './store/repo.mjs';
+import { loadIssueIntoMarkDown } from './store/issue.mjs';
+import { populateConfig } from './store/vuepress.mjs';
 
 (async () => {
     await ensureRepositoryIsReady();

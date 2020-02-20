@@ -1,18 +1,10 @@
 ---
 home: true
-bgImage: /banner.jpg
+bgImage: https://via.placeholder.com/1300x450
 bgImageStyle: {
   height: '450px'
 }
-faceImage: /head.jpg
-heroImage: /hero_write.jpg
-heroImageStyle: {
-  maxHeight: '200px',
-  display: block,
-  margin: '6rem auto 1.5rem',
-  borderRadius: '50%',
-  boxShadow: '0 5px 18px rgba(0,0,0,0.2)'
-}
+faceImage: https://octodex.github.com/images/linktocat.jpg
 isShowTitleInHome: false
 features:
 - title: Who am I？

@@ -1,39 +1,46 @@
 import fs from 'fs';
 import { EOL } from 'os';
-import { client } from '../github/client.js';
-import { github } from './config.js';
-import { Type } from './constant.js';
+import { client } from '../github/client.mjs';
+import { github } from './config.mjs';
+import { Type } from './constant.mjs';
+
+const gitkeeper = '.gitkeeper';
 
 export const loadIssueIntoMarkDown = async (dist) => {
     clearMarkdown(dist);
     let loader = issueLoader();
+    let issueCount = 0;
     while(true) {
         let issue = (await loader.next()).value;
         if (!issue) {
             break;
         }
         convertToMarkdown(issue, dist);
+        issueCount++;
     }
+    console.log(`${issueCount} issues converted...`)
 }
 
 export const clearMarkdown = (dist) => {
     fs.readdirSync(dist).forEach((file) => {
-        fs.unlinkSync(`${dist}/${file}`);
+        if (file !== gitkeeper) {
+            fs.unlinkSync(`${dist}/${file}`);
+        }
     });
 }
 
 export const convertToMarkdown = async (issue, dist) => {
     const number        = issue.number;
     const title         = issue.title;
-    let date            = (new Date(issue.created_at)).toLocaleDateString().replace(/[\/-]/g, '');
+    let date            = (new Date(issue.created_at)).toLocaleDateString().replace(/[\/]/g, '-');
     const author        = issue.user.login;
     const tags          = [''];
     const categories    = [''];
     issue.labels.forEach(label => {
         const [type, value] = label.name.split(':');
-        if (type === 'tags' || type === 'tag') {
+        if (type === 'tags' || type === 'tag' || type === 'タグ') {
             tags.push(` - ${value}`);
-        } else if (type === 'categories' || type === 'category') {
+        } else if (type === 'categories' || type === 'category' || type === 'カテゴリ') {
             categories.push(` - ${value}`);
         }
     });
@@ -49,7 +56,7 @@ author: ${author}
 ---
 
 ${body}`;
-    const filename = `${number}_${date}.md`;
+    const filename = `${number}_${date.replace(/-/g, '')}.md`;
     fs.writeFileSync(`${dist}/${filename}`, content);
 };
 

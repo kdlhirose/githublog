@@ -1,8 +1,8 @@
 import fs from 'fs';
 import dotnet from 'dotenv';
-import { client } from '../github/client.js';
-import { github } from './config.js';
-import { Labels, Configuration } from './constant.js';
+import { client } from '../github/client.mjs';
+import { github } from './config.mjs';
+import { Labels, Configuration } from './constant.mjs';
 
 export const populateConfig = async (replaces) => {
     const repoConfig = {

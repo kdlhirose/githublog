@@ -1,16 +1,14 @@
 {
-  "name": "afternoon-grocery-store",
-  "version": "1.0.0",
-  "description": "recoluan's blog",
-  "main": "index.js",
+  "name": "githublog",
+  "version": "0.0.1",
+  "description": "githublog",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/vuepress dev docs",
     "build": "./node_modules/.bin/vuepress build docs",
-    "prepare": "node --experimental-modules -r dotenv/config cli/prepare.js",
-    "publish": "node --experimental-modules -r dotenv/config cli/publish.js"
+    "githublog:prepare": "node --experimental-modules -r dotenv/config workflow/prepare.mjs",
+    "githublog:publish": "node --experimental-modules -r dotenv/config workflow/publish.mjs"
   },
   "dependencies": {
     "@octokit/rest": "^16.43.1",
@@ -20,6 +18,6 @@
     "recursive-readdir": "^2.2.2",
     "vuepress": "1.0.3",
     "vuepress-plugin-flowchart": "1.4.3",
-    "vuepress-theme-reco": "1.0.8-alpha.3"
+    "vuepress-theme-reco": "gpgkd906/vuepress-theme-reco#master"
   }
 }
