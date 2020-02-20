@@ -1,0 +1,5 @@
+node_modules/
+public/
+docs/views/article/
+.env
+.DS_Store

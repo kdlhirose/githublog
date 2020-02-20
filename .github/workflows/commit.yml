@@ -1,8 +1,6 @@
-name: Issue
+name: Commit
 
-on:
-  issues:
-    types: [opened, edited]
+on: [push]
 
 jobs:
   build:

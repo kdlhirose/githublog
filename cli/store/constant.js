@@ -12,5 +12,7 @@ export const Labels = [
     [Type.Public, '0e4d3b'], [Type.Private, 'b43232'],
 ];
 
-export const Master = 'heads/master';
-export const Pages  = 'heads/gh-pages';
+export const Pages  = {
+    branch: 'gh-pages',
+    ref: 'heads/gh-pages'
+}

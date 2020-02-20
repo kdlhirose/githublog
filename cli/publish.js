@@ -1,10 +1,9 @@
 import { resolve } from 'path';
-import { ensureRepositoryIsReady } from './store/repo.js';
-import { loadIssueIntoMarkDown } from './store/issue.js';
+import { publish } from './store/repo.js';
 
 (async () => {
-    // await ensureRepositoryIsReady();
-    await loadIssueIntoMarkDown(
-        `${resolve()}/docs/views/article`,
+    await publish(
+        `${resolve()}/public/`,
+        'publish site',
     );
 })();

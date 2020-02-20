@@ -10,7 +10,8 @@
     "dev": "./node_modules/.bin/vuepress dev docs",
     "build": "./node_modules/.bin/vuepress build docs",
     "prepare": "node --experimental-modules -r dotenv/config cli/prepare.js",
-    "publish": "node --experimental-modules -r dotenv/config cli/publish.js"
+    "publish": "node --experimental-modules -r dotenv/config cli/publish.js",
+    "forked": "node --experimental-modules -r dotenv/config cli/forked.js"
   },
   "dependencies": {
     "@octokit/rest": "^16.43.1",

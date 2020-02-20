@@ -3,6 +3,7 @@ const themeConfig = require('./config/theme/')
 module.exports = {
   title: 'タイトル',
   description: 'ディスクリプション',
+  base: '/mc/',
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],

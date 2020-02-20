@@ -1,16 +1,29 @@
-import { client } from '../github/client.js';
+import { client, commitAndPush } from '../github/client.js';
 import dotnet from 'dotenv';
 import { EOL } from 'os';
 import { github } from './config.js';
-import { Labels, Configuration } from './constant.js';
+import { Labels, Configuration, Pages } from './constant.js';
 
 export const ensureRepositoryIsReady = async () => {
+    await ensureIssueEnabled();
+    await ensurePrivateRepository();
     // ensure labels are ready
     await ensureLabels();
-
     // ensure configs
     await ensureConfiguration();
 };
+
+export const publish = async (src, message) => {
+
+    await commitAndPush(src, {
+        ...github,
+        repo: github.publish || github.repository,
+        ref: Pages.ref,
+        message
+    });
+
+    await ensurePublishPage();
+}
 
 const ensureLabels = async () => {
     let labelsForCreate = [];
@@ -46,11 +59,11 @@ const ensureConfiguration = async () => {
 
     const {data: issues} = await client.issues.listForRepo(repoConfig);
     let config = {
-        publish     : `publish=`,
         title       : `title=タイトル`,
         description : `description=ディスクリプション`,
         faceImage   : `faceImage=/head.jpg`,
         bgImage     : 'bgImage=/banner.jpg',
+        base        : `base=${github.publish}`,
     };
 
     const configIssue = issues.filter(issue => {
@@ -88,4 +101,38 @@ const ensureConfiguration = async () => {
             ],
         });
     }
+}
+
+const ensurePublishPage = async () => {
+    try {
+        await client.repos.getPages({
+            owner: github.owner,
+            repo: github.publish,
+        });
+    } catch (e) {
+        await client.repos.enablePagesSite({
+            owner: github.owner,
+            repo: github.publish,
+            source: {
+                branch: Pages.branch,
+            }
+        });
+    }
+}
+
+const ensureIssueEnabled = async () => {
+    await client.repos.update({
+        owner: github.owner,
+        repo: github.repository,
+        has_issues: true
+    });
+}
+
+const ensurePrivateRepository = async () => {
+    await client.repos.update({
+        owner: github.owner,
+        repo: github.repository,
+        private: true,
+        visibility: 'private'
+    });
 }
