@@ -1,8 +1,6 @@
-name: Issue
+name: Commit
 
-on:
-  issues:
-    types: [opened, edited]
+on: [push]
 
 jobs:
   build:
@@ -19,8 +17,8 @@ jobs:
         node-version: '12.x'
     - name: yarn install
       run: yarn --frozen-lockfile
-    - name: fetch all issues then rebuild and commit/push
+    - name: githublog:prepare
       env:
         ACCESS_TOKEN:  ${{ secrets.ACCESS_TOKEN }}
         PUBLISH_REPOSITORY:  ${{ secrets.PUBLISH_REPOSITORY }}
-      run: yarn githublog:prepare && yarn build && yarn githublog:publish
+      run: yarn githublog:prepare
