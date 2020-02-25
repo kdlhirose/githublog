@@ -11,43 +11,45 @@
 * vuejs/vuepress  
     * 静的コンテンツ生成用のみ、他の同等なツールに置き換えても可。
 
-## 遊ぶ方法
 ### 事前準備
 
 * githubの無料アカウントでログインする
-* ブログ公開用リポジトリを作成
-
-```
-    リポジトリ作成(https://github.com/new)に移動する
-    Repository nameは任意です。
-    後ほど使用するのメモをしておきましょう。
-    publicと設定をし、
-    Initialize this repository with a READMEをチェックして
-    Create repositoryをクリックしてリポジトリを作成
-```
 
 * githubのapi用accessTokenを取得する
 
-```
-    githubの右上の個人アイコンをクリックして、メニューからSettingを選択する
-    左のメニューからDeveloper settingsを選択、さらにPersonal access tokensを選択する
-    Personal access tokensの画面から、Generate new tokenをクリックして作成画面に移動する。
-    Noteに、ご自身が認識しやすいようにメモーを入れましょう
-    Select scopesの部分は、
-    * repo          Full control of private repositories *
-    のみを選択してください。
-    accessTokenを作ったら同じくメモーしておきましょう
-```
+    githubの右上の個人アイコンをクリックして、メニューから **Settings** を選択する  
+    左のメニューから **Developer settings** を選択、さらに **Personal access tokens** を選択する  
+![img01](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_01.png)
+
+    Personal access tokensの画面から、Generate new tokenをクリックして作成画面に移動する。  
+    Noteに、ご自身が認識しやすいようにメモーを入れましょう  
+    Select scopesの部分は、  
+    ``` 
+    repo          Full control of private repositories  
+    ```
+    のみを選択してください。  
+    accessTokenを作ったらメモーしておきましょう  
+![img02](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_02.png)
 
 ### GithuBlogをフォーク
-以降、フォークしたリポジトリにて作業を行う。
-### accessTokenや公開リポジトリの設定
-フォークしたリポジトリのCodeタブでファイル一覧を表示し  
-_envファイルを編集する。  
-先ほどメモーしたaccessTokenやブログ公開用リポジトリのnameを設定し  
-ファイル名を *** .env *** に変更してそのまま画面からコミットを作る。  
-しばらくの間、休憩を取りましょう、設定反映を待ちましょう。
-### サイトの基本設定を変更する
-Issuesタブに移動し、issue一覧をみましょう  
-configurationというissueが作成されているはずです。  
-configurationには、サイトの基本設定を行える。  
+以降、forkしたリポジトリにて操作する
+
+### accessTokenを設定する
+リポジトリの **Settings** に移動し、Secretsにて```ACCESS_TOKEN```を追加する
+![img03](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_03.png)
+
+### github actionsを有効化する
+リポジトリの **Actions** に移動し、workflowを有効にします。
+![img04](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_04.png)
+
+### 最後の一押し
+リポジトリの **Code** に移動し、remove_thisファイルを削除する
+![img05](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_05.png)
+![img06](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_06.png)
+
+
+**Actions**に移動し、workflowの実行を眺めましょう  
+workflowの実行が完了次第、**Settings** に移動し、**Github Pages**を確認する
+![img07](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_07.png)
+
+## 設定を変更してみる
