@@ -53,3 +53,10 @@ workflowの実行が完了次第、**Settings** に移動し、**Github Pages**�
 ![img07](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_07.png)
 
 ## 設定を変更してみる
+リポジトリの **Issues** に移動し、サイトの設定を変えてみましょう  
+![img08](https://raw.githubusercontent.com/kobedigitallabo/githublog/master/documents/img_08.png)
+
+titleやdescriptionをそのまま変更する
+画像の差し替えは、Issueの変更フォームに、好きな画像をそのままドラグ＆ドロップする  
+そしてアップロードされた画像のリンクをコピペで変える
+変更が終われば、**update comment**で保存する  
