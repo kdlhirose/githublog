@@ -4,7 +4,6 @@ bgImage: https://via.placeholder.com/1300x450
 bgImageStyle: {
   height: '450px'
 }
-faceImage: https://octodex.github.com/images/linktocat.jpg
 isShowTitleInHome: false
 features:
 - title: Who am I？

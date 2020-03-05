@@ -32,7 +32,8 @@ export const clearMarkdown = (dist) => {
 export const convertToMarkdown = async (issue, dist) => {
     const number        = issue.number;
     const title         = issue.title;
-    let date            = (new Date(issue.created_at)).toLocaleDateString().replace(/[\/]/g, '-');
+    const d             = new Date(issue.created_at);
+    let [date]            = issue.created_at.split('T');
     const author        = issue.user.login;
     const tags          = [''];
     const categories    = [''];
@@ -56,7 +57,7 @@ author: ${author}
 ---
 
 ${body}`;
-    const filename = `${number}_${date.replace(/-/g, '')}.md`;
+    const filename = `${number}_${date.replace(/[/-]/g, '')}.md`;
     fs.writeFileSync(`${dist}/${filename}`, content);
 };
 
